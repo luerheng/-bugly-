@@ -5,4 +5,4 @@
 # 1要添加的东西都添加完成以后,重新编译一下项目
 # 2在android studio的最右边 Gradle 点开出现下图
 
-![blockchain](https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=702257389,1274025419&fm=27&gp=0.jpg "区块链")
+![测试](https://github.com/luerheng/-bugly-/blob/master/app/src/main/res/drawable/D6ABF9D0-DA76-41fe-8C3A-BAB6214BA368.png "图片")
