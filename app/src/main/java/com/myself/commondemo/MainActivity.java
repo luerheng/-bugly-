@@ -1,7 +1,5 @@
 package com.myself.commondemo;
 
-
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +8,9 @@ import android.widget.Toast;
 
 import com.myself.commondemo.phone.CallRecordsActivity;
 
+/**
+ * 测试上传更新代码是否成功
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
