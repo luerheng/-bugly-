@@ -37,4 +37,12 @@
         android:text="获取手机通讯录"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+    <Button
+        android:textColor="@color/colorWhrite"
+        android:background="@color/colorAccent"
+        android:id="@+id/bt_text"
+        android:padding="10dp"
+        android:text="文字效果"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

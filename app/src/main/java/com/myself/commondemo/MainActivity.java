@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.myself.commondemo.contracts.ContractsActivity;
 import com.myself.commondemo.phone.CallRecordsActivity;
 
 /**
@@ -40,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, CallRecordsActivity.class));
+            }
+        });
+        findViewById(R.id.bt_text).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ContractsActivity.class));
             }
         });
     }

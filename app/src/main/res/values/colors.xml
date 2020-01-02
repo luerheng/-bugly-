@@ -6,4 +6,6 @@
     <color name="colorWhrite">#ffffff</color>
     <color name="colorBlack">#050505</color>
     <color name="colorBlue">#1196db</color>
+    <color name="lucency">#00000000</color>
+    <color name="half_lucency">#e0000000</color>
 </resources>

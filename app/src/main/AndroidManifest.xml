@@ -34,6 +34,7 @@
         <activity android:name=".TestActivity"/>
         <activity android:name=".ThreeTimesActivity"/>
         <activity android:name=".phone.CallRecordsActivity"/>
+        <activity android:name=".contracts.ContractsActivity"/>
 
         <!--腾讯Bugly热更新 start-->
         <activity
