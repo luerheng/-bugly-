@@ -5,13 +5,36 @@
     android:orientation="vertical">
 
     <TextView
-        android:padding="10dp"
         android:id="@+id/mview"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:padding="10dp" />
+
     <TextView
-        android:padding="10dp"
         android:id="@+id/tv_tag"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:padding="10dp" />
+
+    <LinearLayout
+        android:layout_marginLeft="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:button="@null"
+            android:background="@drawable/checkbox_selector"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:id="@+id/tv_listtag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
 </LinearLayout>

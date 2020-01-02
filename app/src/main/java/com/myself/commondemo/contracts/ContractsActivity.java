@@ -31,11 +31,12 @@ public class ContractsActivity extends AppCompatActivity {
             "《测试第三方代理协议》"
     };
 
-    String[] tags = {"精华", "活动","推荐"};
+    String[] tags = {"精华", "活动", "推荐"};
     private boolean isChecked;
     private SpannableStringBuilder spannableStringBuilder;
     private TextView mView;
     private TextView tv_tag;
+    private TextView tv_listtag;
     private ImageSpan unselectSpan;
     private ImageSpan selectSpan;
 
@@ -49,17 +50,20 @@ public class ContractsActivity extends AppCompatActivity {
     private void initView() {
         mView = findViewById(R.id.mview);
         tv_tag = findViewById(R.id.tv_tag);
+        tv_listtag = findViewById(R.id.tv_listtag);
         final String string = "  已阅读并同意";
         //图标(默认位选中)
         spannableStringBuilder = new SpannableStringBuilder(string);
-//        unselectSpan = new ImageSpan(this,R.drawable.checked_nor2x);
-//        selectSpan = new ImageSpan(this,R.drawable.checked_pre2x);
-//        spannableStringBuilder.setSpan(unselectSpan,0,1,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        setIconSapn(spannableStringBuilder,R.drawable.checked_nor2x);
+        unselectSpan = new ImageSpan(this,R.drawable.checked_nor2x);
+        selectSpan = new ImageSpan(this,R.drawable.checked_pre2x);
+        spannableStringBuilder.setSpan(unselectSpan,0,1,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        setIconSapn(spannableStringBuilder, R.drawable.checked_nor2x);
         mView.setText(getText());
-        tv_tag.setText(getTagText1(tags));
+        tv_tag.setText(getTagText(tags));
+        tv_listtag.setText(getTagText1());
         mView.setMovementMethod(LinkMovementMethod.getInstance());
         tv_tag.setMovementMethod(LinkMovementMethod.getInstance());
+        tv_listtag.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     private SpannableStringBuilder getTagText(String[] tags) {
@@ -71,7 +75,7 @@ public class ContractsActivity extends AppCompatActivity {
             ClickableSpan clickableSpan = new ClickableSpan() {
                 @Override
                 public void onClick(View widget) {
-                    CommonUtils.showToast(ContractsActivity.this,"点击"+tag);
+                    CommonUtils.showToast(ContractsActivity.this, "点击" + tag);
                 }
 
                 @Override
@@ -81,12 +85,12 @@ public class ContractsActivity extends AppCompatActivity {
                     ds.setColor(getResources().getColor(R.color.colorBlue));
                 }
             };
-            if("活动".equals(tag)){
-                span= new RoundedBackgroundSpan(ContextCompat.getColor(this,R.color.colorAccent), ContextCompat.getColor(this,R.color.colorWhrite));
-            }else if ("推荐".equals(tag)){
-                span= new RoundedBackgroundSpan(ContextCompat.getColor(this,R.color.colorPrimary), ContextCompat.getColor(this,R.color.colorWhrite));
-            }else{
-                span= new RoundedBackgroundSpan(ContextCompat.getColor(this,R.color.colorBlue), ContextCompat.getColor(this,R.color.colorWhrite));
+            if ("活动".equals(tag)) {
+                span = new RoundedBackgroundSpan(ContextCompat.getColor(this, R.color.colorAccent), ContextCompat.getColor(this, R.color.colorWhrite));
+            } else if ("推荐".equals(tag)) {
+                span = new RoundedBackgroundSpan(ContextCompat.getColor(this, R.color.colorPrimary), ContextCompat.getColor(this, R.color.colorWhrite));
+            } else {
+                span = new RoundedBackgroundSpan(ContextCompat.getColor(this, R.color.colorBlue), ContextCompat.getColor(this, R.color.colorWhrite));
             }
             stringBuilder.setSpan(span, stringBuilder.length() - thisTag.length(), stringBuilder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             stringBuilder.setSpan(clickableSpan, stringBuilder.length() - thisTag.length(), stringBuilder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -96,31 +100,31 @@ public class ContractsActivity extends AppCompatActivity {
         return stringBuilder;
     }
 
-    private SpannableStringBuilder getText(){
+    private SpannableStringBuilder getText() {
         //选择按钮的点击事件
-//        ClickableSpan imagClick = new ClickableSpan() {
-//            @Override
-//            public void onClick(View widget) {
-//                CommonUtils.showToast(ContractsActivity.this,"点击了");
-//                //显示协议内容
-//                if (isChecked) {
-//                    spannableStringBuilder.setSpan(unselectSpan,0,1,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-////                    setIconSapn(spannableStringBuilder, R.drawable.icon_unselect);
-//                } else {
-////                    setIconSapn(spannableStringBuilder, R.drawable.icon_select);
-//                    spannableStringBuilder.setSpan(selectSpan,0,1,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//                }
-//                isChecked = !isChecked;
-//            }
-//
-//            @Override
-//            public void updateDrawState(TextPaint ds) {
-//                super.updateDrawState(ds);
-//                ds.setUnderlineText(false);
-//                ds.setColor(Color.WHITE);
-//            }
-//        };
-//        spannableStringBuilder.setSpan(imagClick, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ClickableSpan imagClick = new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                CommonUtils.showToast(ContractsActivity.this,"点击了");
+                //显示协议内容
+                if (isChecked) {
+                    spannableStringBuilder.setSpan(unselectSpan,0,1,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//                    setIconSapn(spannableStringBuilder, R.drawable.icon_unselect);
+                } else {
+//                    setIconSapn(spannableStringBuilder, R.drawable.icon_select);
+                    spannableStringBuilder.setSpan(selectSpan,0,1,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                }
+                isChecked = !isChecked;
+            }
+
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setUnderlineText(false);
+                ds.setColor(Color.WHITE);
+            }
+        };
+        spannableStringBuilder.setSpan(imagClick, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         for (int i = 0; i < protocols.length; i++) {
             final String protocol = protocols[i];
             SpannableStringBuilder protocolStringBuild = new SpannableStringBuilder(protocol);
@@ -132,7 +136,7 @@ public class ContractsActivity extends AppCompatActivity {
                 public void onClick(View widget) {
                     //显示协议内容
 //                    mView.setText(chart, finalI, protocols.length);
-                    CommonUtils.showToast(ContractsActivity.this,"协议"+finalI);
+                    CommonUtils.showToast(ContractsActivity.this, "协议" + finalI);
                 }
 
                 @Override
@@ -156,11 +160,12 @@ public class ContractsActivity extends AppCompatActivity {
             }
         }
         //去掉点击的背景色
-        BackgroundColorSpan backgroundColorSpan=new BackgroundColorSpan(Color.parseColor("#FFFFFF"));
-        RoundedBackgroundSpan span= new RoundedBackgroundSpan(ContextCompat.getColor(this,R.color.colorWhrite), ContextCompat.getColor(this,R.color.colorBlack));
+        BackgroundColorSpan backgroundColorSpan = new BackgroundColorSpan(Color.parseColor("#FFFFFF"));
+        RoundedBackgroundSpan span = new RoundedBackgroundSpan(ContextCompat.getColor(this, R.color.colorWhrite), ContextCompat.getColor(this, R.color.colorBlack));
         spannableStringBuilder.setSpan(backgroundColorSpan, 0, spannableStringBuilder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         return spannableStringBuilder;
     }
+
     /**
      * 设置徐泽状态图标
      *
@@ -172,8 +177,8 @@ public class ContractsActivity extends AppCompatActivity {
         spannableStringBuilder.setSpan(imageSpan, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
 
-    private SpannableStringBuilder getTagText1(String[] tags) {
-        SpannableStringBuilder stringBuilder = new SpannableStringBuilder("符合规划有大哥好地方规划的,法规和公司法规和豆腐干和!");
+    private SpannableStringBuilder getTagText1() {
+        SpannableStringBuilder stringBuilder = new SpannableStringBuilder("  我已阅读并同意");
 
         for (int i = 0; i < protocols.length; i++) {
             final String protocol = protocols[i];
@@ -184,7 +189,9 @@ public class ContractsActivity extends AppCompatActivity {
             ClickableSpan clickableSpan = new ClickableSpan() {
                 @Override
                 public void onClick(View widget) {
-                    CommonUtils.showToast(ContractsActivity.this,"协议"+finalI);
+                    //显示协议内容
+//                    mView.setText(chart, finalI, protocols.length);
+                    CommonUtils.showToast(ContractsActivity.this, "协议" + finalI);
                 }
 
                 @Override
@@ -200,16 +207,14 @@ public class ContractsActivity extends AppCompatActivity {
 //            protocolStringBuild.setSpan(foregroundColorSpan, 0, protocol.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             stringBuilder.append(protocolStringBuild);
             //点
-//            if (i != protocols.length - 1) {
-//                SpannableStringBuilder dotStringBuild = new SpannableStringBuilder("、");
-//                ForegroundColorSpan dotSpan = new ForegroundColorSpan(mView.getResources().getColor(R.color.colorBlack));
-//                dotStringBuild.setSpan(dotSpan, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//                stringBuilder.append(dotStringBuild);
-//            }
+            if (i != protocols.length - 1) {
+                SpannableStringBuilder dotStringBuild = new SpannableStringBuilder("、");
+                ForegroundColorSpan dotSpan = new ForegroundColorSpan(mView.getResources().getColor(R.color.colorBlack));
+                dotStringBuild.setSpan(dotSpan, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                stringBuilder.append(dotStringBuild);
+            }
         }
-
-        RoundedBackgroundSpan span = new RoundedBackgroundSpan(ContextCompat.getColor(this, R.color.colorWhrite), ContextCompat.getColor(this, R.color.colorBlack));
-        stringBuilder.setSpan(span, 1, 37, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        //去掉点击的背景色
         return stringBuilder;
     }
 
